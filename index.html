@@ -67,44 +67,15 @@
     /* ══ PAGE 1 — INVITATION COVER ══════════════════ */
     #page1 {
       height: 100svh;
-      display: flex; flex-direction: column; align-items: center;
+      position: relative; overflow: hidden;
       background: var(--ivory);
-      position: relative; overflow: hidden;
     }
 
-    .stamp-wrap {
-      margin-top: 1rem;
-      width: 188px; height: 188px;
-      flex-shrink: 0; position: relative; z-index: 2;
-      opacity: 0; animation: stamp-appear 1s cubic-bezier(0.34,1.56,0.64,1) forwards 0.15s;
+    /* Full-bleed photo */
+    .p1-photo-abs {
+      position: absolute; inset: 0;
     }
-    .stamp-wrap svg { width: 100%; height: 100%; overflow: visible; }
-
-    .celebrate-text {
-      text-align: center; flex-shrink: 0;
-      margin: 0.2rem 0 0.4rem;
-      opacity: 0; animation: fu 1s ease forwards 0.4s;
-      position: relative; z-index: 2;
-    }
-    .celebrate-line1 {
-      font-family: 'Sacramento', cursive;
-      font-size: clamp(2.2rem, 9.5vw, 3rem);
-      font-weight: 400;
-      color: var(--charcoal); display: block; line-height: 1.2;
-    }
-    .celebrate-line2 {
-      font-family: 'Sacramento', cursive;
-      font-size: clamp(1.9rem, 8.5vw, 2.6rem);
-      font-weight: 400;
-      color: var(--charcoal); display: block; line-height: 1.2;
-    }
-
-    .p1-photo-wrap {
-      width: 100%; flex: 1; min-height: 240px;
-      position: relative; overflow: hidden;
-      opacity: 0; animation: fu 1.1s ease forwards 0.65s;
-    }
-    .p1-photo-wrap img {
+    .p1-photo-abs img {
       width: 100%; height: 100%;
       object-fit: cover; object-position: 50% 18%;
       display: block;
@@ -112,38 +83,77 @@
     }
     @keyframes img-breathe {
       0%,100% { transform: scale(1); }
-      50%      { transform: scale(1.018); }
-    }
-    /* Fade photo into background at top */
-    .p1-photo-top-fade {
-      position: absolute; top: 0; left: 0; right: 0; height: 42%;
-      background: linear-gradient(to bottom,
-        var(--ivory) 0%,
-        rgba(250,248,243,0.82) 22%,
-        rgba(250,248,243,0.45) 50%,
-        transparent 100%);
-      pointer-events: none; z-index: 1;
-    }
-    /* Torn paper at bottom */
-    .torn-svg {
-      position: absolute; bottom: -1px; left: -2%; width: 104%;
-      pointer-events: none; display: block; z-index: 2;
+      50%      { transform: scale(1.022); }
     }
 
-    .p1-bottom {
-      width: 100%; padding: 1rem 1rem 0.4rem;
-      display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
-      background: var(--ivory); flex-shrink: 0;
-      opacity: 0; animation: fu 1s ease forwards 1s;
+    /* Soft gradient in the middle to ease the transition */
+    .p1-mid-fade {
+      position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      background: linear-gradient(to bottom,
+        rgba(250,248,243,0.55) 0%,
+        transparent 30%,
+        transparent 68%,
+        rgba(250,248,243,0.55) 100%);
     }
+
+    /* Top torn ivory paper */
+    .p1-top-torn {
+      position: absolute; top: 0; left: -2%; width: 104%;
+      height: 42svh; z-index: 2; pointer-events: none; display: block;
+    }
+
+    /* Bottom torn ivory paper */
+    .p1-bot-torn {
+      position: absolute; bottom: 0; left: -2%; width: 104%;
+      height: 28svh; z-index: 2; pointer-events: none; display: block;
+    }
+
+    /* Content wrappers */
+    .p1-content-top {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+      display: flex; flex-direction: column; align-items: center;
+      padding-top: 0.9rem;
+    }
+    .p1-content-bot {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      display: flex; flex-direction: column; align-items: center;
+      padding-bottom: 1.5rem; gap: 0.25rem;
+    }
+
+    .stamp-wrap {
+      width: 168px; height: 168px;
+      flex-shrink: 0; position: relative;
+      opacity: 0; animation: stamp-appear 1s cubic-bezier(0.34,1.56,0.64,1) forwards 0.15s;
+    }
+    .stamp-wrap svg { width: 100%; height: 100%; overflow: visible; }
+
+    .celebrate-text {
+      text-align: center; flex-shrink: 0;
+      margin: 0.1rem 0 0;
+      opacity: 0; animation: fu 1s ease forwards 0.4s;
+    }
+    .celebrate-line1 {
+      font-family: 'Sacramento', cursive;
+      font-size: clamp(2rem, 9vw, 2.8rem);
+      font-weight: 400;
+      color: var(--charcoal); display: block; line-height: 1.2;
+    }
+    .celebrate-line2 {
+      font-family: 'Sacramento', cursive;
+      font-size: clamp(1.7rem, 8vw, 2.4rem);
+      font-weight: 400;
+      color: var(--charcoal); display: block; line-height: 1.2;
+    }
+
     #musicBtn {
-      width: 52px; height: 52px; border-radius: 50%;
+      width: 50px; height: 50px; border-radius: 50%;
       border: 1.5px solid var(--charcoal);
-      background: transparent;
+      background: rgba(250,248,243,0.82);
       display: flex; align-items: center; justify-content: center;
       cursor: pointer;
       transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.25s ease, border-color 0.25s ease;
       box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+      opacity: 0; animation: fu 1s ease forwards 1s;
     }
     #musicBtn:hover  { transform: scale(1.1); }
     #musicBtn:active { transform: scale(0.92); }
@@ -160,8 +170,7 @@
       font-weight: 600; font-style: italic;
       font-size: clamp(1.75rem, 7.5vw, 2.2rem);
       color: var(--charcoal); letter-spacing: 0.04em;
-      padding: 0.15rem 1.5rem 1.6rem; text-align: center;
-      background: var(--ivory); flex-shrink: 0;
+      text-align: center;
       opacity: 0; animation: fu 0.9s ease forwards 1.1s;
       line-height: 1;
     }
@@ -623,86 +632,88 @@
 <!-- ══ PAGE 1 — INVITATION COVER ══════════════════════ -->
 <section id="page1">
 
-  <!-- Circular stamp -->
-  <div class="stamp-wrap" aria-label="You're cordially invited">
-    <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <!--
-          CCW (sweep=0) from left→right through the TOP half:
-          text appears on the OUTSIDE of the top arc, reading left-to-right ✓
-        -->
-        <path id="arc-top" d="M 24,110 A 86,86 0 0,0 196,110"/>
-        <!--
-          CCW (sweep=0) from right→left through the BOTTOM half:
-          text appears on the OUTSIDE of the bottom arc, appearing INVERTED ✓
-        -->
-        <path id="arc-bot" d="M 196,110 A 86,86 0 0,0 24,110"/>
-      </defs>
-      <!-- Outer ring -->
-      <circle cx="110" cy="110" r="88" fill="none" stroke="#1A1714" stroke-width="0.9"/>
-      <!-- Inner ring (decorative) -->
-      <circle cx="110" cy="110" r="80" fill="none" stroke="#1A1714" stroke-width="0.35"/>
-      <!-- YOU'RE at top -->
-      <text font-family="Montserrat, sans-serif" font-size="13.5" fill="#1A1714" letter-spacing="7" font-weight="500">
-        <textPath href="#arc-bot" startOffset="50%" text-anchor="middle">YOU'RE</textPath>
-      </text>
-      <!-- INVITED at bottom (inverted stamp style) -->
-      <text font-family="Montserrat, sans-serif" font-size="13.5" fill="#1A1714" letter-spacing="7" font-weight="500">
-        <textPath href="#arc-top" startOffset="50%" text-anchor="middle">INVITED</textPath>
-      </text>
-      <!-- cordially — Pacifico: rounded casual brush script -->
-      <text x="110" y="124" text-anchor="middle" font-family="Pacifico, cursive" font-size="41" fill="#1A1714">cordially</text>
-    </svg>
-  </div>
-
-  <!-- "to celebrate the joyous union of" -->
-  <div class="celebrate-text">
-    <span class="celebrate-line1">to celebrate</span>
-    <span class="celebrate-line2">the joyous union of</span>
-  </div>
-
-  <!-- Couple photo -->
-  <div class="p1-photo-wrap">
+  <!-- Full-bleed photo -->
+  <div class="p1-photo-abs">
     <img src="assets/Images/water_chikkupru.png" alt="Sujith and Prudence" />
-    <!-- Top fade: photo merges into background -->
-    <div class="p1-photo-top-fade"></div>
-    <!-- Organic torn paper bottom — smooth bezier curves, irregular depth -->
-    <svg class="torn-svg" viewBox="0 0 390 62" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" height="62">
-      <path d="
-        M 0,62 L 0,44
-        C 6,40 10,30 20,34
-        C 30,38 32,22 44,26
-        C 54,30 58,14 70,18
-        C 80,22 84,8  96,12
-        C 106,16 108,4 120,8
-        C 130,12 136,2 146,6
-        C 156,10 160,20 172,16
-        C 182,12 186,24 198,28
-        C 208,32 212,18 224,22
-        C 234,26 236,12 248,16
-        C 258,20 260,8 272,12
-        C 282,16 284,4 296,8
-        C 306,12 312,22 322,18
-        C 332,14 336,26 348,30
-        C 358,34 360,20 372,24
-        C 380,27 385,34 390,30
-        L 390,62 Z
-      " fill="#FAF8F3"/>
-    </svg>
   </div>
 
-  <!-- Music button -->
-  <div class="p1-bottom">
+  <!-- Soft mid-fade to ease the torn edges -->
+  <div class="p1-mid-fade"></div>
+
+  <!-- Top torn ivory paper -->
+  <svg class="p1-top-torn" viewBox="0 0 390 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 0,0 L 390,0 L 390,248
+      C 384,244 378,256 368,250
+      C 358,244 350,258 340,252
+      C 330,246 322,260 310,254
+      C 300,248 292,262 280,256
+      C 270,250 262,264 250,258
+      C 240,252 230,240 220,246
+      C 210,252 200,238 190,244
+      C 180,250 170,236 160,242
+      C 150,248 140,234 130,240
+      C 120,246 110,232 100,238
+      C 90,244 80,230 70,236
+      C 60,242 52,256 40,250
+      C 30,244 20,258 8,252
+      L 0,252 Z"
+      fill="#FAF8F3"/>
+  </svg>
+
+  <!-- Bottom torn ivory paper -->
+  <svg class="p1-bot-torn" viewBox="0 0 390 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 0,200 L 390,200 L 390,58
+      C 382,64 374,50 364,56
+      C 354,62 346,48 334,54
+      C 324,60 316,46 304,52
+      C 294,58 286,44 274,50
+      C 264,56 256,42 244,48
+      C 234,54 224,66 212,60
+      C 202,54 192,68 180,62
+      C 170,56 160,70 148,64
+      C 138,58 128,72 116,66
+      C 106,60 96,74 84,68
+      C 74,62 64,76 52,70
+      C 42,64 32,78 20,72
+      C 10,66 4,74 0,70 Z"
+      fill="#FAF8F3"/>
+  </svg>
+
+  <!-- Top content: stamp + celebrate text -->
+  <div class="p1-content-top">
+    <div class="stamp-wrap" aria-label="You're cordially invited">
+      <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="arc-top" d="M 24,110 A 86,86 0 0,0 196,110"/>
+          <path id="arc-bot" d="M 196,110 A 86,86 0 0,0 24,110"/>
+        </defs>
+        <circle cx="110" cy="110" r="88" fill="none" stroke="#1A1714" stroke-width="0.9"/>
+        <circle cx="110" cy="110" r="80" fill="none" stroke="#1A1714" stroke-width="0.35"/>
+        <text font-family="Montserrat, sans-serif" font-size="13.5" fill="#1A1714" letter-spacing="7" font-weight="500">
+          <textPath href="#arc-bot" startOffset="50%" text-anchor="middle">YOU'RE</textPath>
+        </text>
+        <text font-family="Montserrat, sans-serif" font-size="13.5" fill="#1A1714" letter-spacing="7" font-weight="500">
+          <textPath href="#arc-top" startOffset="50%" text-anchor="middle">INVITED</textPath>
+        </text>
+        <text x="110" y="124" text-anchor="middle" font-family="Pacifico, cursive" font-size="41" fill="#1A1714">cordially</text>
+      </svg>
+    </div>
+    <div class="celebrate-text">
+      <span class="celebrate-line1">to celebrate</span>
+      <span class="celebrate-line2">the joyous union of</span>
+    </div>
+  </div>
+
+  <!-- Bottom content: music button + names -->
+  <div class="p1-content-bot">
     <button id="musicBtn" aria-label="Play wedding music">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1714" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
       </svg>
     </button>
-    <span class="music-hint-text">press and play</span>
+    <span class="music-hint-text">tap to open and play music</span>
+    <div class="p1-names">Sujith <span class="amp">&amp;</span> Prudence</div>
   </div>
-
-  <!-- Names -->
-  <div class="p1-names">Sujith <span class="amp">&amp;</span> Prudence</div>
 
 </section>
 
