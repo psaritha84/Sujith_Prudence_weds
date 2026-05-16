@@ -1,0 +1,9 @@
+node_modules/
+temporary screenshots/
+.DS_Store
+*.DS_Store
+image.png
+page2.png
+screenshot*.mjs
+serve.mjs
+CLAUDE.md
