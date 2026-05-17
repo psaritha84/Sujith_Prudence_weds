@@ -236,7 +236,7 @@
     /* ── Realistic rings ── */
     .rings-wrap { padding: 0.45rem 0 0; }
     .rings-svg {
-      width: 148px; height: 74px; display: block; overflow: visible;
+      width: 160px; height: auto; display: block; overflow: visible;
       animation: rings-breathe 3.5s ease-in-out infinite;
     }
     @keyframes rings-breathe {
@@ -716,68 +716,9 @@
       </div>
     </div>
 
-    <!-- Realistic interlocked rings -->
+    <!-- Ring image -->
     <div class="rings-wrap">
-      <svg class="rings-svg" viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <!-- 7-stop metallic gold: specular → bright → medium → dark shadow → reflected → secondary → edge -->
-          <linearGradient id="rng-A" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#FFFDE8"/>
-            <stop offset="5%"   stop-color="#F5D05A"/>
-            <stop offset="18%"  stop-color="#CC9828"/>
-            <stop offset="40%"  stop-color="#7A4C08"/>
-            <stop offset="62%"  stop-color="#C28E1E"/>
-            <stop offset="82%"  stop-color="#E4B030"/>
-            <stop offset="100%" stop-color="#96660C"/>
-          </linearGradient>
-          <linearGradient id="rng-B" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#FFF8DC"/>
-            <stop offset="5%"   stop-color="#ECC84E"/>
-            <stop offset="18%"  stop-color="#C09020"/>
-            <stop offset="40%"  stop-color="#724606"/>
-            <stop offset="62%"  stop-color="#BC8818"/>
-            <stop offset="82%"  stop-color="#DAA82C"/>
-            <stop offset="100%" stop-color="#8E5E0A"/>
-          </linearGradient>
-          <clipPath id="rng-U"><rect x="0" y="0"  width="160" height="40"/></clipPath>
-          <clipPath id="rng-D"><rect x="0" y="40" width="160" height="40"/></clipPath>
-        </defs>
-
-        <!-- ① LEFT ring — top half (sits behind right ring at the overlap zone) -->
-        <g clip-path="url(#rng-U)">
-          <!-- Band: stroke IS the ring, centre stays transparent -->
-          <ellipse cx="58" cy="40" rx="28.5" ry="17.5" fill="none" stroke="url(#rng-A)" stroke-width="14"/>
-          <!-- Inner edge depth shadow -->
-          <ellipse cx="58" cy="40" rx="21.5" ry="10.5" fill="none" stroke="rgba(42,16,0,0.55)" stroke-width="4.5"/>
-          <!-- Outer edge dark line -->
-          <ellipse cx="58" cy="40" rx="35.5" ry="24.5" fill="none" stroke="rgba(42,16,0,0.3)"  stroke-width="1"/>
-        </g>
-
-        <!-- ② RIGHT ring — full (in front on top, behind left on bottom) -->
-        <ellipse cx="102" cy="40" rx="28.5" ry="17.5" fill="none" stroke="url(#rng-B)" stroke-width="14"/>
-        <ellipse cx="102" cy="40" rx="21.5" ry="10.5" fill="none" stroke="rgba(42,16,0,0.55)" stroke-width="4.5"/>
-        <ellipse cx="102" cy="40" rx="35.5" ry="24.5" fill="none" stroke="rgba(42,16,0,0.3)"  stroke-width="1"/>
-        <!-- Right ring: bright specular arc (top) -->
-        <path d="M 74,24 Q 102,10 130,24" fill="none" stroke="rgba(255,253,210,0.97)" stroke-width="5" stroke-linecap="round" clip-path="url(#rng-U)"/>
-        <!-- Right ring: soft secondary arc -->
-        <path d="M 83,18 Q 102,12 121,18" fill="none" stroke="rgba(255,255,235,0.5)"  stroke-width="2" stroke-linecap="round" clip-path="url(#rng-U)"/>
-        <!-- Right ring: warm bottom reflection -->
-        <path d="M 75,56 Q 102,69 129,56" fill="none" stroke="rgba(222,172,58,0.55)"  stroke-width="3" stroke-linecap="round" clip-path="url(#rng-D)"/>
-
-        <!-- ③ LEFT ring — bottom half (comes in front of right ring) -->
-        <g clip-path="url(#rng-D)">
-          <ellipse cx="58" cy="40" rx="28.5" ry="17.5" fill="none" stroke="url(#rng-A)" stroke-width="14"/>
-          <ellipse cx="58" cy="40" rx="21.5" ry="10.5" fill="none" stroke="rgba(42,16,0,0.55)" stroke-width="4.5"/>
-          <ellipse cx="58" cy="40" rx="35.5" ry="24.5" fill="none" stroke="rgba(42,16,0,0.3)"  stroke-width="1"/>
-        </g>
-
-        <!-- ④ LEFT ring highlights — drawn last so always on top -->
-        <!-- Top specular arc -->
-        <path d="M 30,24 Q 58,10 86,24"  fill="none" stroke="rgba(255,253,210,0.97)" stroke-width="5" stroke-linecap="round" clip-path="url(#rng-U)"/>
-        <path d="M 39,18 Q 58,12 77,18"  fill="none" stroke="rgba(255,255,235,0.5)"  stroke-width="2" stroke-linecap="round" clip-path="url(#rng-U)"/>
-        <!-- Bottom warm reflection -->
-        <path d="M 31,56 Q 58,69 85,56"  fill="none" stroke="rgba(222,172,58,0.55)"  stroke-width="3" stroke-linecap="round" clip-path="url(#rng-D)"/>
-      </svg>
+      <img class="rings-svg" src="assets/Images/ring.png" alt="wedding rings">
     </div>
 
     <!-- Date -->
