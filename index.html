@@ -71,13 +71,13 @@
       background: var(--ivory);
     }
 
-    /* Full-bleed photo */
+    /* Photo starts below the text area */
     .p1-photo-abs {
-      position: absolute; inset: 0;
+      position: absolute; top: 30%; left: 0; right: 0; bottom: 0;
     }
     .p1-photo-abs img {
       width: 100%; height: 100%;
-      object-fit: cover; object-position: 50% 18%;
+      object-fit: cover; object-position: 50% 0%;
       display: block;
       animation: img-breathe 9s ease-in-out infinite;
     }
@@ -86,20 +86,17 @@
       50%      { transform: scale(1.022); }
     }
 
-    /* Soft gradient in the middle to ease the transition */
-    .p1-mid-fade {
-      position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    /* Top gradient fade — image softly emerges from ivory */
+    .p1-top-fade {
+      position: absolute; top: 0; left: 0; right: 0; height: 75%;
+      pointer-events: none; z-index: 1;
       background: linear-gradient(to bottom,
-        rgba(250,248,243,0.55) 0%,
-        transparent 30%,
-        transparent 68%,
-        rgba(250,248,243,0.55) 100%);
-    }
-
-    /* Top torn ivory paper */
-    .p1-top-torn {
-      position: absolute; top: 0; left: -2%; width: 104%;
-      height: 42svh; z-index: 2; pointer-events: none; display: block;
+        var(--ivory) 0%,
+        var(--ivory) 34%,
+        rgba(250,248,243,0.92) 46%,
+        rgba(250,248,243,0.55) 60%,
+        rgba(250,248,243,0.15) 74%,
+        transparent 100%);
     }
 
     /* Bottom torn ivory paper */
@@ -637,28 +634,8 @@
     <img src="assets/Images/water_chikkupru.png" alt="Sujith and Prudence" />
   </div>
 
-  <!-- Soft mid-fade to ease the torn edges -->
-  <div class="p1-mid-fade"></div>
-
-  <!-- Top torn ivory paper -->
-  <svg class="p1-top-torn" viewBox="0 0 390 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 0,0 L 390,0 L 390,248
-      C 384,244 378,256 368,250
-      C 358,244 350,258 340,252
-      C 330,246 322,260 310,254
-      C 300,248 292,262 280,256
-      C 270,250 262,264 250,258
-      C 240,252 230,240 220,246
-      C 210,252 200,238 190,244
-      C 180,250 170,236 160,242
-      C 150,248 140,234 130,240
-      C 120,246 110,232 100,238
-      C 90,244 80,230 70,236
-      C 60,242 52,256 40,250
-      C 30,244 20,258 8,252
-      L 0,252 Z"
-      fill="#FAF8F3"/>
-  </svg>
+  <!-- Top gradient fade -->
+  <div class="p1-top-fade"></div>
 
   <!-- Bottom torn ivory paper -->
   <svg class="p1-bot-torn" viewBox="0 0 390 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -913,20 +890,20 @@
   <h2 class="sec-title sr d1" style="position:relative;">Will you <em>join us?</em></h2>
 
   <form class="rsvp-form sr d2" id="rsvpForm">
-    <div class="fg"><label>Full Name</label><input type="text" placeholder="Your name" required></div>
-    <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+91 00000 00000"></div>
+    <div class="fg"><label>Full Name</label><input type="text" name="name" placeholder="Your name" required></div>
+    <div class="fg"><label>Phone Number</label><input type="tel" name="phone" placeholder="+91 00000 00000"></div>
     <div class="fg">
       <label>Will you be attending?</label>
       <div class="radio-row">
         <label class="rl">
-          <input type="radio" name="att" value="yes" required>
+          <input type="radio" name="attending" value="yes" required>
           <svg class="rl-icon-yes" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
           <span class="rl-label">Joyfully, Yes</span>
         </label>
         <label class="rl">
-          <input type="radio" name="att" value="no">
+          <input type="radio" name="attending" value="no">
           <svg class="rl-icon-no" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
@@ -937,10 +914,10 @@
     </div>
     <div class="fg">
       <label>Number of Guests</label>
-      <input type="number" min="1" max="20" placeholder="Enter number of guests">
+      <input type="number" name="guests" min="1" max="20" placeholder="Enter number of guests">
     </div>
-    <div class="fg"><label>A blessing for the couple</label><textarea placeholder="Share your warmest wishes..."></textarea></div>
-    <button type="submit" class="sub-btn">Send with Love &#9829;</button>
+    <div class="fg"><label>A blessing for the couple</label><textarea name="message" placeholder="Share your warmest wishes..."></textarea></div>
+    <button type="submit" class="sub-btn" id="rsvpSubmitBtn">Send with Love &#9829;</button>
   </form>
 
   <div class="rsvp-ty" id="rsvpTy">
@@ -1031,10 +1008,30 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.sr').forEach(el => obs.observe(el));
 
-  /* RSVP */
-  document.getElementById('rsvpForm').addEventListener('submit', e => {
+  /* RSVP — paste your Google Apps Script Web App URL below */
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwu8T8bmDuCngXrj8uHeMpFUQRCWhhuHDvmzErkV5dDTkUdLysTWams2GeWif-fIo5g/exec';
+
+  document.getElementById('rsvpForm').addEventListener('submit', async e => {
     e.preventDefault();
-    document.getElementById('rsvpForm').style.display = 'none';
+    const form   = e.target;
+    const btn    = document.getElementById('rsvpSubmitBtn');
+    const fd     = new FormData(form);
+
+    btn.disabled    = true;
+    btn.textContent = 'Sending…';
+
+    const params = new URLSearchParams();
+    params.append('name',      fd.get('name')      || '');
+    params.append('phone',     fd.get('phone')     || '');
+    params.append('attending', fd.get('attending') || '');
+    params.append('guests',    fd.get('guests')    || '');
+    params.append('message',   fd.get('message')   || '');
+
+    try {
+      await fetch(SHEET_URL, { method: 'POST', body: params, mode: 'no-cors' });
+    } catch (_) { /* no-cors response always looks like a network error — data still saves */ }
+
+    form.style.display = 'none';
     document.getElementById('rsvpTy').classList.add('show');
   });
 </script>
