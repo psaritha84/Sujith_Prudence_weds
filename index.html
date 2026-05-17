@@ -118,7 +118,7 @@
     }
 
     .stamp-wrap {
-      width: 168px; height: 168px;
+      width: 210px; height: 210px;
       flex-shrink: 0; position: relative;
       opacity: 0; animation: stamp-appear 1s cubic-bezier(0.34,1.56,0.64,1) forwards 0.15s;
     }
@@ -158,8 +158,8 @@
     #musicBtn.on svg { stroke: var(--ivory); }
     .music-hint-text {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.52rem; letter-spacing: 0.16em;
-      color: var(--charcoal-soft); opacity: 0.7;
+      font-size: 0.78rem; letter-spacing: 0.14em;
+      color: var(--charcoal); opacity: 1; font-weight: 500;
     }
 
     .p1-names {
@@ -193,48 +193,61 @@
       object-fit: cover; object-position: top center; display: block;
     }
     .p2-photo-fade {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 62%;
+      position: absolute; bottom: 0; left: 0; right: 0; height: 72%;
       background: linear-gradient(to top,
         var(--ivory) 0%,
-        rgba(250,248,243,0.96) 20%,
-        rgba(250,248,243,0.78) 44%,
+        rgba(250,248,243,0.97) 18%,
+        rgba(250,248,243,0.82) 40%,
+        rgba(250,248,243,0.3) 65%,
         transparent 100%);
       pointer-events: none;
     }
     /* All content overlaid at the bottom */
     .p2-content {
       position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 0 1.4rem 1.5rem;
-      display: flex; flex-direction: column; align-items: flex-start;
+      padding: 0 1.4rem 1.8rem;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
       z-index: 2;
     }
-    .std-block { margin: 0; padding: 0; }
+    .std-block {
+      margin: 0; padding: 0;
+      display: flex; flex-direction: row; align-items: baseline;
+      gap: 0.3em; white-space: nowrap;
+    }
     .std-save {
       font-family: 'Playfair Display', serif; font-weight: 900;
-      font-size: clamp(3.8rem, 17vw, 6rem);
-      color: var(--charcoal); line-height: 0.88;
-      display: block; letter-spacing: -0.03em;
+      font-size: clamp(2rem, 8.5vw, 3.6rem);
+      color: var(--charcoal); line-height: 1;
+      letter-spacing: -0.02em;
     }
     .std-the {
       font-family: 'Dancing Script', cursive;
-      font-size: clamp(2.2rem, 10vw, 3.4rem);
-      color: var(--charcoal); line-height: 0.82;
-      display: block; margin-left: 1.1rem; letter-spacing: 0.01em;
-      margin-top: -0.05rem;
+      font-size: clamp(1.6rem, 7vw, 3rem);
+      color: var(--charcoal); line-height: 1;
     }
-    .std-date-row { display: flex; align-items: baseline; gap: 0.35rem; }
+    .std-date-row { display: inline-flex; align-items: baseline; gap: 0.2em; }
     .std-date {
       font-family: 'Playfair Display', serif; font-weight: 900;
-      font-size: clamp(3.8rem, 17vw, 6rem);
-      color: var(--charcoal); line-height: 0.88;
-      display: block; letter-spacing: -0.03em;
+      font-size: clamp(2rem, 8.5vw, 3.6rem);
+      color: var(--charcoal); line-height: 1;
+      letter-spacing: -0.02em;
     }
     .std-heart {
-      font-size: clamp(0.85rem, 3.2vw, 1.1rem);
-      color: var(--charcoal); line-height: 1; margin-bottom: 0.2rem;
+      font-size: clamp(0.7rem, 2.5vw, 1rem);
+      color: #c0392b; line-height: 1;
+      display: inline-block;
+      animation: heart-beat 1.2s cubic-bezier(0.34,1.56,0.64,1) infinite;
+    }
+    @keyframes heart-beat {
+      0%,100% { transform: scale(1); }
+      14%      { transform: scale(1.35); }
+      28%      { transform: scale(1); }
+      42%      { transform: scale(1.2); }
+      56%      { transform: scale(1); }
     }
     /* ── Realistic rings ── */
-    .rings-wrap { padding: 0.45rem 0 0; }
+    .rings-wrap { padding: 0.45rem 0 0; display: flex; justify-content: center; }
     .rings-svg {
       width: 160px; height: auto; display: block; overflow: visible;
       animation: rings-breathe 3.5s ease-in-out infinite;
@@ -246,13 +259,15 @@
     /* ── Date ── */
     .aug-date {
       font-family: 'Montserrat', sans-serif;
-      font-weight: 800; font-size: clamp(0.72rem, 3.2vw, 0.95rem);
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--charcoal); margin: 0.5rem 0 0.4rem;
+      font-weight: 800; font-size: clamp(1rem, 4.2vw, 1.4rem);
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--charcoal); margin: 0.6rem 0 0.5rem;
       display: flex; align-items: center; gap: 0.5rem;
     }
     .aug-date-heart {
-      font-size: 0.7em; color: var(--charcoal); line-height: 1;
+      font-size: 0.7em; color: #c0392b; line-height: 1;
+      display: inline-block;
+      animation: heart-beat 1.2s cubic-bezier(0.34,1.56,0.64,1) infinite 0.3s;
     }
     /* ── Countdown — inline reference style ── */
     .std-cd-wrap {
@@ -282,7 +297,7 @@
     .scroll-hint {
       margin-top: 0.7rem; align-self: center;
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 0.82rem;
+      font-style: italic; font-size: 1.05rem;
       color: var(--charcoal-soft); opacity: 0.6;
     }
 
@@ -315,8 +330,9 @@
     }
     .eyebrow {
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 1rem; color: var(--gold-dark); letter-spacing: 0.05em;
+      font-size: 1.8rem; color: var(--gold-dark); letter-spacing: 0.05em;
       display: block; margin-bottom: 0.6rem;
+      opacity: 1; filter: brightness(0.78);
     }
     .big-name-g, .big-name-b {
       font-family: 'Playfair Display', serif; font-weight: 300;
@@ -363,11 +379,13 @@
     .photo-card:hover img { transform: scale(1.04); }
     .photo-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(26,23,20,0.55) 0%, rgba(26,23,20,0.08) 50%, transparent 100%);
+      background: linear-gradient(to top, rgba(26,23,20,0.72) 0%, rgba(26,23,20,0.18) 55%, transparent 100%);
     }
     .photo-cap {
-      position: absolute; bottom: 1.4rem; left: 1.5rem; right: 1.5rem;
-      font-family: 'Pinyon Script', cursive; color: rgba(255,255,255,0.88); line-height: 1.2;
+      position: absolute; bottom: 1.4rem; left: 1.2rem; right: 1.2rem;
+      font-family: 'Dancing Script', cursive; font-weight: 700;
+      color: #ffffff; line-height: 1.2;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.5);
     }
     .gal-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.2rem; }
 
@@ -381,36 +399,54 @@
     .sec-title em { font-style: italic; color: var(--gold-dark); }
     .evt-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.4rem; }
     .evt-card {
-      background: var(--white); border-radius: 1.2rem;
-      padding: 1.8rem 1.5rem 1.8rem 2.3rem;
-      border: 1px solid rgba(201,169,110,0.15);
-      box-shadow: 0 4px 24px rgba(201,169,110,0.06), 0 1px 4px rgba(0,0,0,0.04);
+      background: linear-gradient(145deg, #ffffff 0%, #fdfaf4 100%);
+      border-radius: 1.6rem;
+      padding: 0;
+      border: 1px solid rgba(201,169,110,0.22);
+      box-shadow: 0 8px 36px rgba(201,169,110,0.12), 0 2px 8px rgba(0,0,0,0.05);
       text-align: left; position: relative; overflow: hidden;
     }
     .evt-card::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-      background: linear-gradient(to bottom, var(--gold-light), #E8C4A4);
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+      background: linear-gradient(to bottom, var(--gold-light), var(--gold-dark));
+      border-radius: 5px 0 0 5px;
     }
-    .evt-icon  { font-size: 1.8rem; display: block; margin-bottom: 0.55rem; }
-    .evt-name  { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 500; color: var(--charcoal); line-height: 1.1; }
-    .evt-time  { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); margin: 0.5rem 0 0.6rem; }
-    .evt-desc  { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--charcoal-soft); line-height: 1.55; }
-    .evt-venue { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 300; color: var(--sand); margin-top: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
-    .evt-map-link {
-      display: inline-flex; align-items: center; gap: 0.3rem;
-      margin-top: 0.9rem;
-      font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--gold-dark); text-decoration: none;
-      border: 1px solid rgba(201,169,110,0.4); border-radius: 2rem;
-      padding: 0.35rem 0.8rem;
-      transition: background 0.25s ease, color 0.25s ease;
+    .evt-header {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.6rem 1.8rem 1.4rem 2.2rem;
     }
-    .evt-map-link:hover { background: var(--gold-dark); color: var(--ivory); }
+    .evt-icon-wrap {
+      width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(223,200,154,0.28) 0%, rgba(201,169,110,0.14) 100%);
+      border: 1px solid rgba(201,169,110,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .evt-icon  { font-size: 1.7rem; display: block; }
+    .evt-name  { font-family: 'Playfair Display', serif; font-size: 1.85rem; font-weight: 600; color: var(--charcoal); line-height: 1.1; }
+    .evt-divider {
+      height: 1px; margin: 0 1.8rem;
+      background: linear-gradient(to right, rgba(201,169,110,0.5), rgba(201,169,110,0.08));
+    }
+    .evt-body  { padding: 1.2rem 1.8rem 0 2.2rem; }
+    .evt-time  { font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gold-dark); margin: 0 0 0.5rem; line-height: 1.6; }
     .evt-muhurtham {
-      font-family: 'Cormorant Garamond', serif; font-size: 0.82rem;
-      color: var(--gold-dark); margin-top: 0.35rem; letter-spacing: 0.03em;
+      font-family: 'Montserrat', sans-serif; font-size: 1.05rem;
+      font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--gold-dark); margin-bottom: 0.7rem;
     }
+    .evt-desc  { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; color: var(--charcoal-soft); line-height: 1.65; }
+    .evt-footer { padding: 1rem 1.8rem 1.6rem 2.2rem; margin-top: 0.8rem; border-top: 1px solid rgba(201,169,110,0.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; }
+    .evt-venue { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--charcoal-soft); display: flex; align-items: center; gap: 0.4rem; }
+    .evt-map-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ivory); text-decoration: none;
+      background: var(--gold-dark);
+      border-radius: 2rem; padding: 0.5rem 1.1rem;
+      transition: background 0.25s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .evt-map-link:hover { background: var(--charcoal); transform: translateY(-1px); }
 
     /* ══ QUOTE ══════════════════════════════════════ */
     .quote-sec { padding: 5rem 2rem; background: var(--ivory-warm); text-align: center; position: relative; overflow: hidden; }
@@ -431,25 +467,25 @@
       position: absolute; top: 1.5rem; left: 50%; transform: translateX(-50%);
       white-space: nowrap; pointer-events: none; user-select: none;
     }
-    .rsvp-form { max-width: 400px; margin: 2.5rem auto 0; display: flex; flex-direction: column; gap: 1.1rem; text-align: left; position: relative; }
-    .fg { display: flex; flex-direction: column; gap: 0.35rem; }
-    .fg label { font-family: 'Montserrat',sans-serif; font-size: 0.57rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); }
+    .rsvp-form { max-width: 480px; margin: 2.5rem auto 0; display: flex; flex-direction: column; gap: 1.4rem; text-align: left; position: relative; }
+    .fg { display: flex; flex-direction: column; gap: 0.5rem; }
+    .fg label { font-family: 'Montserrat',sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-dark); }
     .fg input, .fg select, .fg textarea {
       width: 100%; background: var(--white);
-      border: 1px solid rgba(201,169,110,0.2); border-radius: 0.6rem;
-      padding: 0.85rem 1.1rem;
-      font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--charcoal);
+      border: 1px solid rgba(201,169,110,0.25); border-radius: 0.7rem;
+      padding: 1rem 1.2rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--charcoal);
       outline: none; -webkit-appearance: none; appearance: none;
       transition: border-color 0.25s ease, box-shadow 0.25s ease;
     }
     .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,169,110,0.1); }
-    .fg input::placeholder, .fg textarea::placeholder { color: rgba(58,48,40,0.35); font-style: italic; }
-    .fg textarea { resize: none; height: 75px; }
-    .radio-row { display: flex; gap: 0.8rem; }
+    .fg input::placeholder, .fg textarea::placeholder { color: rgba(58,48,40,0.38); font-style: italic; font-size: 1.2rem; }
+    .fg textarea { resize: none; height: 95px; }
+    .radio-row { display: flex; gap: 1rem; }
     .rl {
-      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem;
-      padding: 0.85rem 1rem;
-      border: 1px solid rgba(201,169,110,0.2); border-radius: 0.6rem;
+      flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.45rem;
+      padding: 1rem 1rem;
+      border: 1px solid rgba(201,169,110,0.2); border-radius: 0.7rem;
       cursor: pointer; background: var(--white);
       font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--charcoal-soft);
       transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
@@ -460,13 +496,13 @@
     .rl input { position: absolute; opacity: 0; pointer-events: none; }
     .rl-icon-yes { color: rgba(192,57,43,0.35); transition: color 0.2s ease; }
     .rl-icon-no  { color: rgba(58,48,40,0.3);  transition: color 0.2s ease; }
-    .rl-label { font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; letter-spacing: 0.03em; }
+    .rl-label { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.05em; }
     .sub-btn {
-      width: 100%; padding: 1.05rem;
-      background: var(--charcoal); color: rgba(250,248,243,0.92);
-      border: none; border-radius: 0.6rem;
-      font-family: 'Montserrat', sans-serif; font-size: 0.63rem; font-weight: 400;
-      letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; margin-top: 0.4rem;
+      width: 100%; padding: 1.2rem;
+      background: var(--charcoal); color: rgba(250,248,243,0.95);
+      border: none; border-radius: 0.7rem;
+      font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; margin-top: 0.4rem;
       transition: background 0.3s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
     }
     .sub-btn:hover { background: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(154,116,64,0.25); }
@@ -477,24 +513,95 @@
     .rsvp-ty small { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--charcoal-soft); font-size: 1rem; }
 
     /* ══ FOOTER ═════════════════════════════════════ */
-    .footer { padding: 5rem 2rem 4rem; background: var(--ivory-warm); text-align: center; border-top: 1px solid rgba(201,169,110,0.12); }
-    .footer-script { font-family: 'Pinyon Script', cursive; font-size: clamp(2rem,10vw,3.5rem); color: var(--charcoal-soft); line-height: 1.35; margin-bottom: 2rem; }
-    .footer-couple { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.4rem; }
-    .footer-loc    { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--charcoal-soft); }
-    .footer-compliments {
-      margin-top: 3.5rem; padding-top: 2rem;
-      border-top: 1px solid rgba(201,169,110,0.15);
+    .footer { padding: 4rem 1.5rem 4rem; background: var(--ivory-warm); text-align: center; border-top: 1px solid rgba(201,169,110,0.12); }
+    .footer-hero {
+      position: relative; max-width: 480px; margin: 0 auto;
+      padding: 3.5rem 2.2rem 3rem;
+      background: linear-gradient(160deg, #221c16 0%, #2e2318 55%, #1a1410 100%);
+      border-radius: 2rem;
+      border: 1px solid rgba(201,169,110,0.35);
+      box-shadow:
+        0 24px 64px rgba(0,0,0,0.35),
+        0 4px 16px rgba(201,169,110,0.18),
+        inset 0 1px 0 rgba(223,200,154,0.25),
+        inset 0 -1px 0 rgba(201,169,110,0.1);
+      overflow: hidden;
     }
-    .footer-compliments-label {
+    .footer-hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 0%,   rgba(201,169,110,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse at 50% 100%, rgba(201,169,110,0.10) 0%, transparent 55%);
+    }
+    .footer-hero-orn {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      margin-bottom: 1.8rem;
+    }
+    .footer-hero-orn-bar { flex: 1; max-width: 60px; height: 1px; background: linear-gradient(to right, transparent, rgba(201,169,110,0.6)); }
+    .footer-hero-orn-bar.r { background: linear-gradient(to left, transparent, rgba(201,169,110,0.6)); }
+    .footer-hero-orn-gem { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
+    .footer-script {
+      font-family: 'Pinyon Script', cursive;
+      font-size: clamp(2.8rem, 12vw, 4.8rem);
+      color: rgba(255,255,255,0.93); line-height: 1.25; margin-bottom: 2rem;
+      text-shadow: 0 2px 24px rgba(201,169,110,0.5), 0 0 60px rgba(201,169,110,0.18);
+      position: relative;
+    }
+    .footer-couple {
+      font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 0.6rem;
+      background: linear-gradient(90deg, var(--gold-light) 0%, #F5E09A 30%, var(--gold) 50%, #F5E09A 70%, var(--gold-light) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: name-shimmer 3.5s linear infinite;
+      position: relative;
+    }
+    .footer-loc {
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 0.82rem; color: var(--sand); letter-spacing: 0.06em;
-      display: block; margin-bottom: 0.6rem;
+      font-size: 1.7rem; color: rgba(196,180,152,0.85); position: relative;
+    }
+    .footer-compliments {
+      margin-top: 3.5rem;
+      display: inline-block;
+      position: relative;
+      padding: 2rem 2.8rem 2.2rem;
+      background: linear-gradient(145deg, rgba(255,255,255,0.7) 0%, rgba(245,240,232,0.6) 100%);
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 24px rgba(201,169,110,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .footer-compliments::before,
+    .footer-compliments::after {
+      content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201,169,110,0.5), transparent);
+    }
+    .footer-compliments::before { top: 0.85rem; }
+    .footer-compliments::after  { bottom: 0.85rem; }
+    .footer-compliments-label {
+      font-family: 'Montserrat', sans-serif; font-size: 0.72rem;
+      font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold-dark); display: block; margin-bottom: 0.9rem;
     }
     .footer-compliments-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.05rem, 4.5vw, 1.35rem);
-      font-weight: 400; color: var(--charcoal-soft);
-      line-height: 1.7; letter-spacing: 0.02em;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(1.4rem, 5vw, 1.8rem);
+      font-weight: 400; line-height: 1.5; letter-spacing: 0.01em;
+      background: linear-gradient(90deg,
+        var(--charcoal) 0%,
+        var(--gold-dark) 30%,
+        #E8C87A 50%,
+        var(--gold-dark) 70%,
+        var(--charcoal) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: name-shimmer 4s linear infinite;
+    }
+    @keyframes name-shimmer {
+      0%   { background-position: 200% center; }
+      100% { background-position: -200% center; }
     }
 
     /* ══ SCROLL REVEAL ══════════════════════════════ */
@@ -563,17 +670,17 @@
 
     /* ══ RESPONSIVE ═════════════════════════════════ */
     @media (max-width: 359px) {
-      .stamp-wrap { width: 148px; height: 148px; }
+      .stamp-wrap { width: 185px; height: 185px; }
       .std-save, .std-date { font-size: 3.2rem; }
       .std-the { font-size: 1.8rem; }
       .big-name-g, .big-name-b { font-size: 3.5rem; }
     }
     @media (min-width: 480px) {
-      .stamp-wrap { width: 192px; height: 192px; }
+      .stamp-wrap { width: 240px; height: 240px; }
       .std-save, .std-date { font-size: 5rem; }
     }
     @media (min-width: 768px) {
-      .stamp-wrap { width: 200px; height: 200px; }
+      .stamp-wrap { width: 260px; height: 260px; }
       .names-sec { padding: 7rem 4rem 6rem; }
       .big-name-g, .big-name-b { font-size: min(12vw, 9rem); }
       .gallery-sec { padding: 0 2rem 2rem; }
@@ -583,9 +690,9 @@
       .rsvp-sec { padding: 8rem 4rem 7rem; }
       .rsvp-form { max-width: 520px; }
       #fmBtn { width: 58px; height: 58px; }
-      .std-save, .std-date { font-size: 6rem; }
-      .std-the { font-size: 3rem; }
-      .p2-content { padding: 0 2.5rem 2rem; }
+      .std-save, .std-date { font-size: clamp(2.8rem, 6vw, 4rem); }
+      .std-the { font-size: clamp(2.2rem, 5vw, 3.2rem); }
+      .p2-content { padding: 0 2.5rem 2.5rem; align-items: center; text-align: center; }
     }
     @media (min-width: 1024px) {
       .names-sec { padding: 8rem 6rem 7rem; }
@@ -659,21 +766,7 @@
   <!-- Top content: stamp + celebrate text -->
   <div class="p1-content-top">
     <div class="stamp-wrap" aria-label="You're cordially invited">
-      <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <path id="arc-top" d="M 24,110 A 86,86 0 0,0 196,110"/>
-          <path id="arc-bot" d="M 196,110 A 86,86 0 0,0 24,110"/>
-        </defs>
-        <circle cx="110" cy="110" r="88" fill="none" stroke="#1A1714" stroke-width="0.9"/>
-        <circle cx="110" cy="110" r="80" fill="none" stroke="#1A1714" stroke-width="0.35"/>
-        <text font-family="Montserrat, sans-serif" font-size="13.5" fill="#1A1714" letter-spacing="7" font-weight="500">
-          <textPath href="#arc-bot" startOffset="50%" text-anchor="middle">YOU'RE</textPath>
-        </text>
-        <text font-family="Montserrat, sans-serif" font-size="13.5" fill="#1A1714" letter-spacing="7" font-weight="500">
-          <textPath href="#arc-top" startOffset="50%" text-anchor="middle">INVITED</textPath>
-        </text>
-        <text x="110" y="124" text-anchor="middle" font-family="Pacifico, cursive" font-size="41" fill="#1A1714">cordially</text>
-      </svg>
+      <img src="assets/Images/cord-removed.png" alt="You're cordially invited" style="width:100%;height:100%;object-fit:contain;">
     </div>
     <div class="celebrate-text">
       <span class="celebrate-line1">to celebrate</span>
@@ -699,7 +792,7 @@
 
   <!-- Full-screen photo -->
   <div class="p2-photo-wrap">
-    <img src="assets/Images/water_ChikkuPru1.png" alt="Sujith and Prudence" />
+    <img src="assets/Images/water_chikpru wed stand.png" alt="Sujith and Prudence" />
     <div class="p2-photo-fade"></div>
   </div>
 
@@ -760,19 +853,19 @@
   <div class="photo-card gal-main sr d1">
     <img src="assets/Images/water_ChikkuPru1.png" alt="Walking on the beach" class="gal-main-img">
     <div class="photo-overlay"></div>
-    <div class="photo-cap" style="font-size:clamp(1.6rem,4vw,2.2rem);">walking into forever</div>
+    <div class="photo-cap" style="font-size:clamp(2rem,5vw,2.8rem);">walking into forever</div>
   </div>
 
   <div class="gal-row">
     <div class="photo-card gal-side sr d2">
       <img src="assets/Images/water_chikkupru.png" alt="Sujith and Prudence" class="gal-side-img" style="object-position:center top;">
       <div class="photo-overlay"></div>
-      <div class="photo-cap" style="font-size:clamp(1.2rem,3vw,1.7rem);">two hearts</div>
+      <div class="photo-cap" style="font-size:clamp(1.5rem,3.5vw,2rem);">two hearts</div>
     </div>
     <div class="photo-card gal-side sr d3">
       <img src="assets/Images/water_sujit%20pru_sit.png" alt="Sujith and Prudence at sunset" class="gal-side-img" style="object-position:center 68%;">
       <div class="photo-overlay"></div>
-      <div class="photo-cap" style="font-size:clamp(1.2rem,3vw,1.7rem);">one soul</div>
+      <div class="photo-cap" style="font-size:clamp(1.5rem,3.5vw,2rem);">one soul</div>
     </div>
   </div>
 </section>
@@ -785,34 +878,48 @@
 
   <div class="evt-list">
     <div class="evt-card sr d1">
-      <span class="evt-icon">🪔</span>
-      <div class="evt-name">Wedding &amp; Blessing</div>
-      <div class="evt-time">Monday · 17 August 2026</div>
-      <div class="evt-muhurtham">Muhurtham: 12:07 PM – 12:29 PM</div>
-      <div class="evt-desc">Tying the knot in a sacred ceremony blessed by ancient traditions and surrounded by love</div>
-      <div class="evt-venue">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Azhakodi Temple, Calicut, Kerala
+      <div class="evt-header">
+        <div class="evt-icon-wrap"><span class="evt-icon">🪔</span></div>
+        <div class="evt-name">Wedding &amp; Blessing</div>
       </div>
-      <a class="evt-map-link" href="https://maps.google.com/?q=Azhakodi+Devi+Temple+Calicut+Kerala" target="_blank" rel="noopener">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        View on Google Maps
-      </a>
+      <div class="evt-divider"></div>
+      <div class="evt-body">
+        <div class="evt-time">Monday · 17 August 2026</div>
+        <div class="evt-muhurtham">Muhurtham: 12:07 PM – 12:29 PM</div>
+        <div class="evt-desc">Tying the knot in a sacred ceremony blessed by ancient traditions and surrounded by love</div>
+      </div>
+      <div class="evt-footer">
+        <div class="evt-venue">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Azhakodi Temple, Calicut, Kerala
+        </div>
+        <a class="evt-map-link" href="https://maps.google.com/?q=Azhakodi+Devi+Temple+Calicut+Kerala" target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          View on Maps
+        </a>
+      </div>
     </div>
 
     <div class="evt-card sr d2">
-      <span class="evt-icon">✨</span>
-      <div class="evt-name">Evening Reception</div>
-      <div class="evt-time">Monday · 17 August 2026 · 7:00 PM – 10:00 PM</div>
-      <div class="evt-desc">An evening of celebration, laughter, and love with all who matter most</div>
-      <div class="evt-venue">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Tiara by MPS, Kozhikode, Kerala
+      <div class="evt-header">
+        <div class="evt-icon-wrap"><span class="evt-icon">✨</span></div>
+        <div class="evt-name">Evening Reception</div>
       </div>
-      <a class="evt-map-link" href="https://maps.google.com/?q=Tiara+by+MPS+Kozhikode+Kerala" target="_blank" rel="noopener">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        View on Google Maps
-      </a>
+      <div class="evt-divider"></div>
+      <div class="evt-body">
+        <div class="evt-time">Monday · 17 August 2026<br>7:00 PM – 10:00 PM</div>
+        <div class="evt-desc">An evening of celebration, laughter, and love with all who matter most</div>
+      </div>
+      <div class="evt-footer">
+        <div class="evt-venue">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Tiara by MPS, Kozhikode, Kerala
+        </div>
+        <a class="evt-map-link" href="https://maps.google.com/?q=Tiara+by+MPS+Kozhikode+Kerala" target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          View on Maps
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -869,16 +976,24 @@
 
 <!-- ══ FOOTER ═════════════════════════════════════════ -->
 <footer class="footer">
-  <div class="orn sr" style="margin-bottom:2.5rem;">
-    <div class="orn-bar"></div><div class="orn-gem"></div><div class="orn-gem"></div><div class="orn-gem"></div><div class="orn-bar"></div>
+  <div class="footer-hero sr">
+    <div class="footer-hero-orn">
+      <div class="footer-hero-orn-bar"></div>
+      <div class="footer-hero-orn-gem"></div><div class="footer-hero-orn-gem"></div><div class="footer-hero-orn-gem"></div>
+      <div class="footer-hero-orn-bar r"></div>
+    </div>
+    <p class="footer-script">"Two souls,<br>one forever"</p>
+    <div class="footer-couple">Sujith &amp; Prudence</div>
+    <div class="footer-loc">17 · August · 2026 · Calicut, Kerala</div>
+    <div class="footer-hero-orn" style="margin-top:1.8rem;margin-bottom:0;">
+      <div class="footer-hero-orn-bar"></div>
+      <div class="footer-hero-orn-gem"></div>
+      <div class="footer-hero-orn-bar r"></div>
+    </div>
   </div>
-  <p class="footer-script sr">"Two souls,<br>one forever"</p>
-  <div class="footer-couple sr d1">Sujith &amp; Prudence</div>
-  <div class="footer-loc sr d2">17 · August · 2026 · Calicut, Kerala</div>
-  <div class="orn" style="margin-top:3rem;"><div class="orn-bar"></div><div class="orn-gem"></div><div class="orn-bar"></div></div>
 
   <div class="footer-compliments">
-    <span class="footer-compliments-label">with best compliments from</span>
+    <span class="footer-compliments-label">✦ &nbsp; with best compliments from &nbsp; ✦</span>
     <div class="footer-compliments-names">
       Sumesh, Ved Sumesh &amp; Saritha Sumesh
     </div>
